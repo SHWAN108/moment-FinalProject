@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap');
+*{
+    font-family: 'Montserrat', sans-serif;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
