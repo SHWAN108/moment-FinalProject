@@ -1,7 +1,28 @@
-import React from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { app, fireDB } from "../firebaseConfig";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const register = () => {
+    const auth = getAuth(app);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        getDoc(doc(fireDB, "users", user.uid)).then((user) => {
+          localStorage.setItem(
+            "moment-user",
+            JSON.stringify({ ...user.data(), id: user.id })
+          );
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="bg-sky-500 h-screen ">
       <Link
@@ -15,11 +36,15 @@ function Login() {
           <h1 className=" text-4xl  pt-14 text-sky-500 font-bold">LOGIN</h1>
           <input
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="email"
             className=" border border-gray-300 h-10 rounded-sm focus: border-gray-500 pl-5 mx-5 mt-10"
           ></input>
           <input
             type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="password"
             className=" border border-gray-300 h-10 rounded-sm focus: border-gray-500 pl-5 mx-5 mt-4 "
           ></input>
