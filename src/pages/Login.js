@@ -32,8 +32,8 @@ function Login() {
             </button>
           </div>
           <Link
-            to="/regester"
-            className=" text-sm w-fit flex justify-start mt-5 ml-10 text-sky-500 hover:text-black"
+            to="/register"
+            className=" text-sm w-fit flex justify-start mt-5 ml-10 text-black hover:text-sky-500"
           >
             Click here to register
           </Link>
