@@ -1,4 +1,4 @@
-# React eCommerce Website
+# React Social Media Website
 
 ## WeCode Capstone Project
 
