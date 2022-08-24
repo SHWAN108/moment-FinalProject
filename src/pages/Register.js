@@ -1,16 +1,25 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { fireDB, app } from "../firebaseConfig";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../component/Loader";
+import { toast } from "react-toastify";
+
 function Register() {
+  const dispach = useDispatch();
+  const { loading } = useSelector((store) => store);
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const register = () => {
     const auth = getAuth(app);
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        dispach({ type: "showLoading" });
         const user = userCredential.user;
         const userData = {
           email: user.email,
@@ -18,14 +27,19 @@ function Register() {
           bio: "Hello World",
         };
         setDoc(doc(fireDB, "users", user.uid), userData);
-        console.log(user);
+        dispach({ type: "hideLoading" });
+        toast.success("Register Successfully");
+        navigate("/login");
       })
       .catch((error) => {
+        dispach({ type: "hideLoading" });
+        toast.error("Register Failed");
         console.log(error);
       });
   };
   return (
     <div className="bg-sky-500 h-screen ">
+      {loading && <Loader />}
       <Link
         to="/"
         className=" m-auto flex justify-center w-fit text-white text-6xl font-bold pt-5 hover:text-sky-300 hover:text-7xl transition-color duration-200"

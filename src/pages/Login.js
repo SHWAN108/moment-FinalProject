@@ -1,13 +1,22 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Loader from "../component/Loader";
 import { app, fireDB } from "../firebaseConfig";
 
 function Login() {
+  const { loading } = useSelector((store) => store);
+
+  const dispach = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const register = () => {
+  const navigate = useNavigate();
+  const login = () => {
+    dispach({ type: "showLoading" });
+
     const auth = getAuth(app);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -17,14 +26,19 @@ function Login() {
             "moment-user",
             JSON.stringify({ ...user.data(), id: user.id })
           );
+          toast.success("login Successfull");
         });
+        dispach({ type: "hideLoading" });
+        navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        toast.error("Login Failed");
+        dispach({ type: "hideLoading" });
       });
   };
   return (
     <div className="bg-sky-500 h-screen ">
+      {loading && <Loader />}
       <Link
         to="/"
         className=" m-auto flex justify-center w-fit text-white text-6xl font-bold pt-5 hover:text-sky-300 hover:text-7xl transition-color duration-200"
@@ -52,8 +66,9 @@ function Login() {
             <button
               type="submit"
               className=" bg-sky-500 h-10 rounded-md text-white px-10 mt-5 mr-5 "
+              onClick={login}
             >
-              LOGIN
+              Login
             </button>
           </div>
           <Link
