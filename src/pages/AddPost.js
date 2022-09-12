@@ -1,12 +1,12 @@
 import React from "react";
 import DefaultLayout from "../component/DefaultLayout";
 
-function Home() {
+function AddPost() {
   return (
     <DefaultLayout>
-      <div>Home</div>
+      <div>AddPost</div>
     </DefaultLayout>
   );
 }
 
-export default Home;
+export default AddPost;

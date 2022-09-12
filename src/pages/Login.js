@@ -1,6 +1,6 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -36,6 +36,11 @@ function Login() {
         dispach({ type: "hideLoading" });
       });
   };
+  useEffect(() => {
+    if (localStorage.getItem("moment-user")) {
+      navigate("/");
+    }
+  });
   return (
     <div className="bg-sky-500 h-screen ">
       {loading && <Loader />}

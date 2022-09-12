@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { fireDB, app } from "../firebaseConfig";
@@ -37,6 +37,11 @@ function Register() {
         console.log(error);
       });
   };
+  useEffect(() => {
+    if (localStorage.getItem("moment-user")) {
+      navigate("/");
+    }
+  });
   return (
     <div className="bg-sky-500 h-screen ">
       {loading && <Loader />}
