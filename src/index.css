@@ -2,6 +2,10 @@
 * {
   font-family: "Montserrat", sans-serif;
 }
+html , body {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
