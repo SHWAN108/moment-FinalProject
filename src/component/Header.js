@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 function Header() {
   const location = useLocation();
   const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
   const menuItems = [
     {
       title: "Home",
@@ -55,6 +56,15 @@ function Header() {
               </Link>
             );
           })}
+          <h1
+            className="text-white cursor-pointer  hover:bg-sky-700 hover:rounded hover:p-2 transition-color duration-200"
+            onClick={() => {
+              localStorage.removeItem("moment-user");
+              navigate("/login");
+            }}
+          >
+            Logout
+          </h1>
         </div>
         {/* mobile view */}
         {showMenu && (
@@ -72,6 +82,15 @@ function Header() {
                 </Link>
               );
             })}
+            <h1
+              className="text-white cursor-pointer  hover:bg-sky-700 hover:rounded hover:p-2 transition-color duration-200"
+              onClick={() => {
+                localStorage.removeItem("moment-user");
+                navigate("/login");
+              }}
+            >
+              Logout
+            </h1>
           </div>
         )}
       </div>

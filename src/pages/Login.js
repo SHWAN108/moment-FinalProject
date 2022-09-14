@@ -26,10 +26,10 @@ function Login() {
             "moment-user",
             JSON.stringify({ ...user.data(), id: user.id })
           );
+          navigate("/");
           toast.success("login Successfull");
         });
         dispach({ type: "hideLoading" });
-        navigate("/");
       })
       .catch((error) => {
         toast.error("Login Failed");

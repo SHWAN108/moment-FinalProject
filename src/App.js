@@ -5,6 +5,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import "react-toastify/dist/ReactToastify.css";
 import AddPost from "./pages/AddPost";
+
+import PostDesc from "./pages/PostDesc";
 function App() {
   return (
     <div className="App">
@@ -20,11 +22,20 @@ function App() {
               </ProtectedRouted>
             }
           />
+
           <Route
             path="/addpost"
             element={
               <ProtectedRouted>
                 <AddPost />
+              </ProtectedRouted>
+            }
+          />
+          <Route
+            path="/post/:id"
+            element={
+              <ProtectedRouted>
+                <PostDesc />
               </ProtectedRouted>
             }
           />
