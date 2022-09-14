@@ -6,6 +6,12 @@ html , body {
   overflow-y: hidden !important;
   overflow-x: hidden !important
 }
+.card-sm {
+  box-shadow: 0 0 3px gray ;
+}
+.card {
+  box-shadow: 0 0 3px gray ;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
