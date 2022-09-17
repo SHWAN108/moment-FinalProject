@@ -52,7 +52,7 @@ function AddPost() {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className=" border-dashed border-black border-2 w-1/2 md:w-full my-5 p-5 rounded"
+            className=" border-dashed border-black border-2 w-1/2 md:w-2/3  my-5 p-5 rounded"
             rows="3"
           ></textarea>
           <input type="file" onChange={(e) => onImageChange(e)} />

@@ -8,7 +8,7 @@ function DefaultLayout(props) {
     <div className=" mx-20 my-5 md:mx-5">
       {loading && <Loader />}
       <Header />
-      <div className="content mt-5 border-2 h-[85vh] rounded-md p-5">
+      <div className="content mt-5 border-2 h-fit rounded-md p-5">
         {props.children}
       </div>
     </div>
