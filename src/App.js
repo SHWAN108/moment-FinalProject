@@ -7,6 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 import AddPost from "./pages/AddPost";
 
 import PostDesc from "./pages/PostDesc";
+import SharePost from "./pages/SharePost";
+import Shares from "./pages/Shares";
+import Profile from "./pages/Profile";
 function App() {
   return (
     <div className="App">
@@ -23,6 +26,30 @@ function App() {
             }
           />
 
+          <Route
+            path="/sharepost/:id"
+            element={
+              <ProtectedRouted>
+                <SharePost />
+              </ProtectedRouted>
+            }
+          />
+          <Route
+            path="/shares"
+            element={
+              <ProtectedRouted>
+                <Shares />
+              </ProtectedRouted>
+            }
+          />
+          <Route
+            path="/profile/:id"
+            element={
+              <ProtectedRouted>
+                <Profile />
+              </ProtectedRouted>
+            }
+          />
           <Route
             path="/addpost"
             element={

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 function Header() {
+  const user = JSON.parse(localStorage.getItem("moment-user"));
   const location = useLocation();
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
@@ -20,12 +21,12 @@ function Header() {
     },
     {
       title: "Profile",
-      path: "/profile",
+      path: `/profile/${user.id}`,
     },
   ];
 
   return (
-    <div className=" p-3 bg-sky-500 rounded-md">
+    <div className=" px-3 py-2 bg-sky-500 rounded-md">
       {!showMenu && (
         <div className=" md:flex justify-end hidden -mb-8">
           <HiMenu
@@ -37,9 +38,17 @@ function Header() {
         </div>
       )}
       <div className=" flex items-center justify-between">
-        <h1 className=" text-2xl font-semibold text-white hover:text-sky-200 hover:text-3xl transition-color duration-200">
-          moment
-        </h1>
+        <div>
+          <div onClick={() => navigate("/")} className="cursor-pointer">
+            <h1 className=" text-3xl font-semibold text-white hover:text-sky-200 hover:text-4xl transition-color duration-200">
+              moment
+            </h1>
+            <span className="text-white font-semibold">
+              {user.email.substring(0, user.email.length - 10)}
+            </span>
+          </div>
+        </div>
+
         {/* web view */}
         <div className=" flex space-x-10 justify-end items-center md:hidden">
           {menuItems.map((item) => {

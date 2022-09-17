@@ -22,7 +22,7 @@ function Home() {
   }, []);
   return (
     <DefaultLayout>
-      <div className=" grid grid-cols-4 md:grid-cols-1">
+      <div className=" grid grid-cols-4 md:grid-cols-1 gap-10">
         {data.map((post) => {
           return <Post post={post} />;
         })}
