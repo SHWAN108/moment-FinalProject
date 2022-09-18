@@ -69,7 +69,7 @@ function AddPost() {
             className=" bg-sky-500 h-10 rounded-md text-white px-10 mt-10"
             onClick={addPost}
           >
-            Login
+            Add
           </button>
         )}
       </div>
