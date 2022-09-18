@@ -1,5 +1,22 @@
-# React Social Media Website
+# moment
+## [Live Demo](https://moment10.netlify.app/)
 
-## WeCode Capstone Project
+A social media website using React JS and Tailwind CSS and Firebase
 
-An Social Media website using react/tailwind/firebase
+## Features
+
+- Post discription
+- Sharing Post
+- Like and Unlike Post
+- Comment on a Post
+- Responsive on different screen sizes
+- Profile of the user
+
+## Pages
+
+- Home
+- Add Post
+- Login and Register
+- Profile
+- Shares
+
